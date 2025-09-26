@@ -252,8 +252,8 @@
   </header>
 
   <script>
-    const lat = 38.2056; // Latitude for Crystal City, MO
-    const lon = -90.3676; // Longitude for Crystal City, MO
+    const lat = 38.0095; // Latitude for Crystal City, MO
+    const lon = -90.2179; // Longitude for Crystal City, MO
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=America/Chicago`;
 
     fetch(url)
@@ -355,13 +355,15 @@
 
             document.getElementById('wetinf').innerHTML = `
                 <h3>Microbat Weather Report:</h3>
+                Bloomsdale, MO<br>
+                <br>
                 🌡Temperature: ${temp}°C<br>
                 <br>
                 ☀Condition: ${conditionText}<br>
                 <br>
                 🌬Wind Speed: ${windSpeed} km/h<br>
                 <br><br>
-                Brought to you by Microbat News Meterologis 
+                Brought to you by Microbat News Meterologist 
                 <a href="people/Easton.html">Easton Haynes</a>
             `;
         })
