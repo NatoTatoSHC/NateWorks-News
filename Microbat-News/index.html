@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="img/microbatnews.png" type="image/x-icon">
+  <title>Microbat News</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #222;
+    }
+
+    /* Header & Nav */
+    header {
+      background-color: lightgray;
+      text-align: center;
+      padding: 1rem;
+    }
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+    }
+    nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.5rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #000;
+      padding: 0.5rem;
+      background: #e0e0e0;
+      border-radius: 5px;
+      transition: background 0.2s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background: #ccc;
+    }
+
+    /* Sections */
+    .sec {
+      width: 100%;
+      padding: 2rem 1rem;
+    }
+
+    /* Weather Section */
+    #weathersec {
+      background-color: skyblue;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #weathersec h1 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    #weathersec img {
+      max-width: 100%;
+      height: auto;
+      align-self: center;
+      justify-self: center;
+    }
+    #stories {
+      background-color: firebrick;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #stories h1 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    #sports {
+      background-color: limegreen;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #sports h1 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    #crimes {
+      background-color: red;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #crimes h1 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    #nateworks {
+      background-color: Cyan;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #nateworks h1 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    #us {
+      background-color: whitesmoke;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #us h1 {
+      grid-column: 3;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    #us img {
+      grid-row: 2;
+      width: 90%;
+    }
+    .video-box {
+      grid-row: 2;
+      grid-column: 1 / span 2;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .video-box video {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .weather-text {
+      grid-column: 3;
+      grid-row: 2;
+      padding: 1rem;
+      background-color: rgba(255,255,255,0.7);
+      border-radius: 5px;
+    }
+    .more {
+      background-color: white;
+      font-size: 1rem;
+    }
+
+    /* Make layout stack nicely on small screens */
+    @media (max-width: 768px) {
+      #weathersec {
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+      }
+      #stories {
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+      }
+      #sports {
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+      }
+      #crimes {
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+      }
+      #nateworks {
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+      }
+      #weathersec h1 {
+        grid-column: 1;
+      }
+      #stories h1 {
+        grid-column: 1;
+      }
+      #sports h1 {
+        grid-column: 1;
+      }
+      #crimes h1 {
+        grid-column: 1;
+      }
+      #nateworks h1 {
+        grid-column: 1;
+      }
+      .video-box {
+        grid-column: 1;
+      }
+      .weather-text {
+        grid-column: 1;
+        grid-row: 3;
+        
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/microbatnews.png" width="8%"/>
+    <h1>Microbat News</h1>
+    <nav>
+      <a href="#weathersec">Weather</a>
+      <a href="#stories">Stories</a>
+      <a href="#sports">Sports</a>
+      <a href="#crimes">Crimes</a>
+      <a href="#nateworks">NateWorks</a>
+      <a href="#us">Meet Us</a>
+    </nav>
+  </header>
+
+  <section id="weathersec" class="sec">
+    <img src="img/cloud.png" alt="Cloud icon left" style="grid-column:1;">
+    <h1>Weather</h1>
+    <img src="img/cloud.png" alt="Cloud icon right" style="grid-column:3;">
+    <div class="video-box">
+      <h3>Latest Video</h3>
+      <video src="vids/Rick.mp4" controls aria-label="Latest weather report video"></video>
+    </div>
+    <div class="weather-text">
+      <p id="wetinf"></p>
+      <button class="more" onclick="location.assign('weather/index.html')">More...</button>
+    </div>
+  </section>
+
+  <!-- Placeholder sections -->
+  <section id="stories" class="sec">
+    <h1>Stories</h1>
+    <div class="video-box">
+      <h3>Latest Video</h3>
+      <video src="vids/Rick.mp4" controls aria-label="Latest story video"></video>
+    </div>
+    <div class="weather-text">
+      <p id="stoinf">(Insert Text Here)</p>
+      <button class="more" onclick="location.assign('stories/index.html')">More...</button>
+      
+    </div>
+  </section>
+
+  <section id="sports" class="sec">
+    <h1>Sports</h1>
+    <div class="video-box">
+      <h3>Latest Video</h3>
+      <video src="vids/Rick.mp4" controls aria-label="Latest Sports Video"></video>
+    </div>
+    <div class="weather-text">
+      <p id="spoinf">(Insert Text Here)</p>
+      <button class="more" onclick="location.assign('sports/index.html')">More...</button>
+    </div>
+  </section>
+
+  <section id="crimes" class="sec">
+    <h1>Crimes</h1>
+    <div class="video-box">
+      <h3>Latest Video</h3>
+      <video src="vids/Rick.mp4" controls aria-label="Latest Crime Report Video"></video>
+    </div>
+    <div class="weather-text">
+      <p id="criinf">(Insert Text Here)</p>
+      <button class="more" onclick="location.assign('crimes/index.html')">More...</button>
+    </div>
+  </section>
+
+  <section id="nateworks" class="sec">
+    <h1>NateWorks News Report</h1>
+    <div class="video-box">
+      <h3>Latest Video</h3>
+      <video src="vids/Rick.mp4" controls aria-label="Latest NateWorks News Report Video"></video>
+    </div>
+    <div class="weather-text">
+      <p id="natinf">(Insert Text Here)</p>
+      <button class="more" onclick="location.assign('nateworks/index.html')">More...</button>
+    </div>
+  </section>
+
+  <section id="us" class="sec">
+    <h1>Us</h1>
+    <img src="img/human.png" onclick="location.assign('people/Nate.html')"/><h3>Nate</h3>
+    <img src="img/human.png" onclick="location.assign('people/Chance.html')"/><h3>Chance</h3>
+    <img src="img/microbatnews.png"/>
+    <img src="img/human.png" onclick="location.assign('people/Easton.html')"/><h3>Easton</h3>
+    <img src="img/human.png" onclick="location.assign('people/Ben.html')"/><h3>Ben</h3>
+  </section>
+
+  <footer>
+    <p>copyright &copy; 2025 Microbat News. All rigths reserved.</p>
+    <a>Contact</a>&NewLine;<a href="vids/Rick.mp4">Rick roll</a>
+  </footer>
+  <script>
+    var wetinf = document.getElementById("wetinf");
+    var stoinf = document.getElementById("stoinf");
+    var spoinf = document.getElementById("spoinf");
+    var criinf = document.getElementById("criinf");
+    var natinf = document.getElementById("natinf");
+
+    var wetinft = "Watch the latest";
+    var stoinft = "Watch the latest";
+    var spoinft = "Watch the latest";
+    var criinft = "Watch the latest";
+    var natinft = "Watch the latest";
+
+    wetinf.innerHTML = wetinft;
+    stoinf.innerHTML = stoinft;
+    spoinf.innerHTML = spoinft;
+    criinf.innerHTML = criinft;
+    natinf.innerHTML = natinft;
+  </script>
+</body>
+</html>
