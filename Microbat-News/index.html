@@ -128,6 +128,24 @@
       margin: 0;
       font-size: 2rem;
     }
+    #events {
+      background-color: lightgray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+      text-align: center;
+    }
+    #events h1 {
+      color: black;
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 2rem;
+    }
+    .event {
+      grid-column: 1 / span 4;
+    }
     #us {
       background-color: whitesmoke;
       display: grid;
@@ -228,9 +246,130 @@
       <a href="#sports">Sports</a>
       <a href="#crimes">Crimes</a>
       <a href="#nateworks">NateWorks</a>
+      <a href="#events">Events</a>
       <a href="#us">Meet Us</a>
     </nav>
   </header>
+
+  <script>
+    const lat = 38.2056; // Latitude for Crystal City, MO
+    const lon = -90.3676; // Longitude for Crystal City, MO
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=America/Chicago`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const temp = data.current_weather.temperature;
+            const windSpeed = data.current_weather.windspeed;
+            const condition = data.current_weather.weathercode;
+
+            let conditionText = '';
+            switch (condition) {
+                case 0:
+                    conditionText = 'Clear';
+                    break;
+                case 1:
+                    conditionText = 'Mainly Clear';
+                    break;
+                case 2:
+                    conditionText = 'Partly Cloudy';
+                    break;
+                case 3:
+                    conditionText = 'Overcast';
+                    break;
+                case 45:
+                    conditionText = 'Fog';
+                    break;
+                case 48:
+                    conditionText = 'Depositing Rime Fog';
+                    break;
+                case 51:
+                    conditionText = 'Light Drizzle';
+                    break;
+                case 53:
+                    conditionText = 'Moderate Drizzle';
+                    break;
+                case 55:
+                    conditionText = 'Dense Drizzle';
+                    break;
+                case 56:
+                    conditionText = 'Light Freezing Drizzle';
+                    break;
+                case 57:
+                    conditionText = 'Dense Freezing Drizzle';
+                    break;
+                case 61:
+                    conditionText = 'Showers of Rain';
+                    break;
+                case 63:
+                    conditionText = 'Moderate Showers of Rain';
+                    break;
+                case 65:
+                    conditionText = 'Heavy Showers of Rain';
+                    break;
+                case 66:
+                    conditionText = 'Light Freezing Rain';
+                    break;
+                case 67:
+                    conditionText = 'Heavy Freezing Rain';
+                    break;
+                case 71:
+                    conditionText = 'Showers of Snowfall';
+                    break;
+                case 73:
+                    conditionText = 'Moderate Showers of Snowfall';
+                    break;
+                case 75:
+                    conditionText = 'Heavy Showers of Snowfall';
+                    break;
+                case 77:
+                    conditionText = 'Snow Grains';
+                    break;
+                case 80:
+                    conditionText = 'Light Rain Showers';
+                    break;
+                case 81:
+                    conditionText = 'Moderate Rain Showers';
+                    break;
+                case 82:
+                    conditionText = 'Heavy Rain Showers';
+                    break;
+                case 85:
+                    conditionText = 'Light Snow Showers';
+                    break;
+                case 86:
+                    conditionText = 'Heavy Snow Showers';
+                    break;
+                case 95:
+                    conditionText = 'Thunderstorms';
+                    break;
+                case 96:
+                    conditionText = 'Thunderstorms with Light Hail';
+                    break;
+                case 99:
+                    conditionText = 'Thunderstorms with Heavy Hail';
+                    break;
+                default:
+                    conditionText = 'Unknown';
+            }
+
+            document.getElementById('wetinf').innerHTML = `
+                <h3>Microbat Weather Report:</h3>
+                🌡Temperature: ${temp}°C<br>
+                <br>
+                ☀Condition: ${conditionText}<br>
+                <br>
+                🌬Wind Speed: ${windSpeed} km/h<br>
+                <br><br>
+                Brought to you by Microbat News Meterologis 
+                <a href="people/Easton.html">Easton Haynes</a>
+            `;
+        })
+        .catch(error => {
+            console.error(error);
+            document.getElementById('wetinf').innerText = "Weather info unavailable";
+        });
+  </script>
 
   <section id="weathersec" class="sec">
     <img src="img/cloud.png" alt="Cloud icon left" style="grid-column:1;">
@@ -296,6 +435,16 @@
     </div>
   </section>
 
+  <section id="events" class="sec">
+    <h1>Actual Events</h1>
+    <div class="event" style="background-image: url('img/minecraftlive.png'); color: #000;">
+      <h1 style="font-size: 3rem;">Minecraft Live September 2025</h1>
+      <h2>September 27, 2025 @ 1pm East Time</h2>
+      <button style="font-size: 2rem; background-color: lightgray; border-radius: 100px;" onclick="location.assign('https://www.minecraft.net/en-us/live')">Join Everyone Else</button>
+    </div>
+    
+  </section>
+
   <section id="us" class="sec">
     <h1>Us</h1>
     <img src="img/human.png" onclick="location.assign('people/Nate.html')"/><h3>Nate</h3>
@@ -307,7 +456,7 @@
 
   <footer>
     <p>copyright &copy; 2025 Microbat News. All rigths reserved.</p>
-    <a>Contact</a>&NewLine;<a href="vids/placehold.mp4">Rick roll</a>
+    <a>Contact</a>&NewLine;<a href="vids/Rick.mp4">Rick roll</a>
   </footer>
   <script>
     var wetinf = document.getElementById("wetinf");
